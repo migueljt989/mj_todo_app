@@ -6,12 +6,32 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Tasks'),
+        title: Text(
+          'My Tasks',
+          style: TextStyle(fontSize: textTheme.headlineMedium!.fontSize),
+        ),
         centerTitle: true,
       ),
-      body:Expanded(child: Categories()),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: Column(
+          children: [
+            SizedBox(height: 30),
+            Align(
+              alignment: AlignmentGeometry.centerLeft,
+              child: Text(
+                'Categories',
+                style: TextStyle(fontSize: textTheme.headlineSmall!.fontSize),
+              ),
+            ),
+            SizedBox(height: 30),
+            Expanded(child: Categories()),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: (){},
          label: Text('Category'),
