@@ -32,11 +32,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: (){},
-         label: Text('Category'),
-         icon: Icon(Icons.add_card_outlined),
-         ),
+      floatingActionButton: CustomSheetForm(),
     );
   }
 }
