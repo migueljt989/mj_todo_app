@@ -8,29 +8,32 @@ class IconsCategoryGrid extends StatelessWidget {
     Icons.house_outlined,
     Icons.shopping_bag_outlined,
     Icons.favorite_border_outlined,
+    Icons.shopping_bag_outlined,
+    Icons.favorite_border_outlined,
+    Icons.favorite_border_outlined,
+    Icons.house_outlined,
   ];
   IconsCategoryGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     return SizedBox(
-      height: 300,
+      height: 130,
       child: GridView.count(
-        crossAxisCount: 4,
+        crossAxisCount: 5,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
-        childAspectRatio: 1,
+        childAspectRatio: 1.5,
         children: [
           ...categoryIcons.map((categoryIcon) {
             return Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.amber,
+                shape: BoxShape.circle,
+                color: colors.surfaceContainerHighest,
+                border: BoxBorder.all(width: 2, color: colors.onSurfaceVariant)
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(children: [Icon(categoryIcon, size: 40)]),
-              ),
+              child: Icon(categoryIcon, size: 40),
             );
           }),
         ],

@@ -13,7 +13,6 @@ class _CustomSheetFormState extends State<CustomSheetForm> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final colors = Theme.of(context).colorScheme;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(30),
@@ -28,11 +27,57 @@ class _CustomSheetFormState extends State<CustomSheetForm> {
             ),
             const SizedBox(height: 20),
             CustomTextFormField(hint: 'Category name'),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             IconsCategoryGrid(),
+            const SizedBox(height: 30),
+            _CategoryPreview(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _CategoryPreview extends StatelessWidget {
+  const _CategoryPreview({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return Column(
+      children: [
+        SizedBox(
+          width: 400,
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: Text('Preview', style: TextStyle(fontSize: 20)),
+          ),
+        ),
+        Container(
+          height: 150,
+          width: 400,
+          margin: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: colors.surfaceContainerHigh,
+          ),
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 18),
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: colors.secondaryContainer,
+                ),
+                child: Icon(Icons.list, size: 50),
+              ),
+              const SizedBox(height: 10),
+              Text('Category name', style: TextStyle(fontSize: 20)),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
