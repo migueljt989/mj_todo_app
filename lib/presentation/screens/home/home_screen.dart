@@ -7,6 +7,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final colors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -32,7 +33,19 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: CustomSheetForm(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return CustomSheetForm();
+            },
+          );
+        },
+        label: const Text('Category'),
+        icon: Icon(Icons.add_card_outlined, color: colors.primary),
+        backgroundColor: colors.primaryContainer,
+      ),
     );
   }
 }
