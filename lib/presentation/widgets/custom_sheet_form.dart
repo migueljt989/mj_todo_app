@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mj_todo_app/presentation/providers/sheet_form/selected_icon_provider.dart';
 import 'package:mj_todo_app/presentation/widgets/icons_category_grid.dart';
 import 'package:mj_todo_app/presentation/widgets/widgets.dart';
 
@@ -38,12 +40,13 @@ class _CustomSheetFormState extends State<CustomSheetForm> {
   }
 }
 
-class _CategoryPreview extends StatelessWidget {
-  const _CategoryPreview({super.key});
+class _CategoryPreview extends ConsumerWidget {
+  const _CategoryPreview();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colors = Theme.of(context).colorScheme;
+    final selectedIcon = ref.watch(selectedIconProvider);
     return Column(
       children: [
         SizedBox(
@@ -70,7 +73,15 @@ class _CategoryPreview extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: colors.secondaryContainer,
                 ),
-                child: Icon(Icons.list, size: 50),
+                child: Icon(
+                  selectedIcon == null
+                      ? Icons.list
+                      : IconData(
+                          selectedIcon.values.first,
+                          fontFamily: selectedIcon.keys.first,
+                        ),
+                  size: 50,
+                ),
               ),
               const SizedBox(height: 10),
               Text('Category name', style: TextStyle(fontSize: 20)),
