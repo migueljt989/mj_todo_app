@@ -1,4 +1,5 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:mj_todo_app/domain/entities/selected_icon_data.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'selected_icon_provider.g.dart';
@@ -6,14 +7,16 @@ part 'selected_icon_provider.g.dart';
 @riverpod
 class SelectedIcon extends _$SelectedIcon {
   @override
-  Map<String, int>? build() => null;
+  SelectedIconData? build() => SelectedIconData(
+    codePoint: Icons.list.codePoint,
+    fontFamily: Icons.list.fontFamily,
+  );
 
-  void changeSelection(int codePoint, String fontFamily) {
-    final Map<String, int> entry = {fontFamily: codePoint};
-    if (mapEquals(state, entry)) {
+  void changeSelection(SelectedIconData iconInformation) {
+    if (state?.codePoint == iconInformation.codePoint) {
       state = null;
       return;
     }
-    state = entry;
+    state = iconInformation;
   }
 }

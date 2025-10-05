@@ -75,10 +75,10 @@ class _CategoryPreview extends ConsumerWidget {
                 ),
                 child: Icon(
                   selectedIcon == null
-                      ? Icons.list
+                      ? null
                       : IconData(
-                          selectedIcon.values.first,
-                          fontFamily: selectedIcon.keys.first,
+                          selectedIcon.codePoint,
+                          fontFamily: selectedIcon.fontFamily,
                         ),
                   size: 50,
                 ),

@@ -13,7 +13,7 @@ part of 'selected_icon_provider.dart';
 const selectedIconProvider = SelectedIconProvider._();
 
 final class SelectedIconProvider
-    extends $NotifierProvider<SelectedIcon, Map<String, int>?> {
+    extends $NotifierProvider<SelectedIcon, SelectedIconData?> {
   const SelectedIconProvider._()
     : super(
         from: null,
@@ -33,28 +33,28 @@ final class SelectedIconProvider
   SelectedIcon create() => SelectedIcon();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(Map<String, int>? value) {
+  Override overrideWithValue(SelectedIconData? value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<Map<String, int>?>(value),
+      providerOverride: $SyncValueProvider<SelectedIconData?>(value),
     );
   }
 }
 
-String _$selectedIconHash() => r'c07f67c2ceb2d8bf6e96ef969dcbed856f3f6293';
+String _$selectedIconHash() => r'8cc507b7b30c2e574e56d719d84283182e8644b2';
 
-abstract class _$SelectedIcon extends $Notifier<Map<String, int>?> {
-  Map<String, int>? build();
+abstract class _$SelectedIcon extends $Notifier<SelectedIconData?> {
+  SelectedIconData? build();
   @$mustCallSuper
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<Map<String, int>?, Map<String, int>?>;
+    final ref = this.ref as $Ref<SelectedIconData?, SelectedIconData?>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<Map<String, int>?, Map<String, int>?>,
-              Map<String, int>?,
+              AnyNotifier<SelectedIconData?, SelectedIconData?>,
+              SelectedIconData?,
               Object?,
               Object?
             >;
