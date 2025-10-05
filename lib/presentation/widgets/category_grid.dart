@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mj_todo_app/presentation/providers/providers.dart';
 
-class Categories extends StatelessWidget {
-  Categories({super.key});
+class CategoryGrid extends ConsumerWidget {
+  CategoryGrid({super.key});
 
   final gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
     crossAxisCount: 2,
@@ -11,11 +13,12 @@ class Categories extends StatelessWidget {
   );
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colorTheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final categories = ref.watch(categoriesProvider);
     return GridView.builder(
-      itemCount: 4,
+      itemCount: categories.length,
       gridDelegate: gridDelegate,
       itemBuilder: (context, index) {
         return Container(
@@ -28,10 +31,11 @@ class Categories extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.library_books_outlined, size: 80),
+                Icon(categories[index].icon, size: 100),
                 SizedBox(height: 10),
-                Text('Category Name', style: textTheme.titleLarge),
+                Text(categories[index].name, style: textTheme.titleLarge),
               ],
             ),
           ),

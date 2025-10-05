@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mj_todo_app/presentation/widgets/widgets.dart';
 
-class HomeScreen extends StatelessWidget {
+
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textTheme = Theme.of(context).textTheme;
     final colors = Theme.of(context).colorScheme;
+  
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -29,7 +32,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 30),
-            Expanded(child: Categories()),
+            Expanded(child: CategoryGrid()),
           ],
         ),
       ),
